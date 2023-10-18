@@ -7,6 +7,8 @@ const modal = document.querySelector(".modal");
 const overlay = document.querySelector(".overlay");
 const btnCloseModal = document.querySelector(".btn--close-modal");
 const btnsOpenModal = document.querySelectorAll(".btn--show-modal");
+const btnScrollTo = document.querySelector(".btn--scroll-to");
+const section1 = document.querySelector("#section--1");
 
 const openModal = function () {
   modal.classList.remove("hidden");
@@ -85,3 +87,54 @@ console.log(logo.alt); //Pankaj singh logo
 logo.setAttribute("company", "bankist");
 
 console.log("just adding a line")
+
+btnScrollTo.addEventListener("click", function (e) {
+  /** -------old school way for smooth scrolling--------*/
+
+  // const s1coords = section1.getBoundingClientRect();
+  // console.log(s1coords);
+
+  // console.log(e.target.getBoundingClientRect());
+
+  // console.log("Current scrool x/y", window.pageXOffset, window.pageYOffset);
+  // console.log(
+  //   "height/width of the viewport",
+  //   document.documentElement.clientHeight,
+  //   document.documentElement.clientWidth
+  // );
+  // //Scrolling
+  // window.scrollTo({
+  //   left: s1coords.left + window.pageXOffset,
+  //   top: s1coords.right + window.pageYOffset,
+  //   behavior: "smooth"
+  // });
+
+  /** -------New way for smooth scrolling--------*/
+
+  section1.scrollIntoView({ behavior: "smooth" });
+});
+
+// const alertH1 = function (e) {
+//   alert("Hi its me");
+//   h1.removeEventListener("mouseenter", alertH1);
+// };
+
+// const h1 = document.querySelector("h1");
+
+// h1.onmouseenter = alertH1;
+
+// h1.addEventListener("mouseenter", alertH1);
+
+document.querySelector(".nav__links").addEventListener("click", function (e) {e.preventDefault();
+  let name = e.target;
+  console.log(name); //<a class="nav__link" href="#section--1">Features</a>
+
+  if (e.target.classList.contains("nav__link")) {
+    console.log("It is this ===> ", this);
+    const id = this.getAttribute("href");
+
+    document.querySelector(id).scrollIntoView({
+      behavior: "smooth"
+    });
+  }
+});
