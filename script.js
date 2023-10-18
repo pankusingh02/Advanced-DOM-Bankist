@@ -83,3 +83,5 @@ logo.alt = "Pankaj singh logo";
 console.log(logo.alt); //Pankaj singh logo
 
 logo.setAttribute("company", "bankist");
+
+console.log("just adding a line")
